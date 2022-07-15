@@ -4,7 +4,7 @@ import Noteitem from "./Noteitem";
 
 const Notes = () => {
   const context = useContext(NoteContext);
-  const { notes, setnotes } = context;
+  const { notes} = context;
   return (
     <div className="container my-3">
       <h2>Your Notes</h2>
@@ -12,7 +12,7 @@ const Notes = () => {
         {notes.map((notes) => {
           return (
             <div className="col-md-3 my-3" key={notes._id}>
-              <Noteitem title={notes.title.slice(0,25)} description={notes.description.slice(0,400)} />
+              <Noteitem title={notes.title.slice(0,25)} description={notes.description} />
             </div>
           );
         })}
