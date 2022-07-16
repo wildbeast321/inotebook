@@ -1,20 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
+import NoteContext from "../context/notes/NoteContext";
 
 const Noteitem = (props) => {
+  const context = useContext(NoteContext);
+  const { deleteNote } = context;
+  const { notes, updatenotes } = props;
+
   return (
     <div className="card">
-      <h5 className="card-header">{props.title}...</h5>
+      <h5 className="card-header">{notes.title}</h5>
       <div className="card-body">
-         <div className="d-flex justify-content-around mb-2">
-          <a href="/" className="btn btn-outline-primary">
+        <div className="d-flex justify-content-around mb-2">
+          <button className="btn btn-outline-primary" onClick={()=>{updatenotes(notes)}}>
             <i className="fa-solid fa-pen"></i>
-          </a>
-          <a href="/" className="btn btn-outline-danger">
+          </button>
+          <button
+            className="btn btn-outline-danger"
+            onClick={() => {
+              deleteNote(notes._id);
+            }}
+          >
             <i className="fa-solid fa-trash-can"></i>
-          </a>
+          </button>
         </div>
-        <p className="card-text">{props.description}</p>
-       
+        <p className="card-text">{notes.description}</p>
       </div>
     </div>
   );

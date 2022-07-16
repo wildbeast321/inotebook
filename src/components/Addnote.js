@@ -4,14 +4,18 @@ import NoteContext from "../context/notes/NoteContext";
 const Addnote = () => {
   const context = useContext(NoteContext);
   const { addNote } = context;
-  const [note, setnote] = useState({ title: "", description: "", tag: "default" });
+  const [note, setnote] = useState({
+    title: "",
+    description: "",
+    tag: "Personal",
+  });
 
   const handlesubmit = (e) => {
-    e.preventDefault()
-    addNote(note.title, note.description, note.tag)
+    e.preventDefault();
+    addNote(note.title, note.description, note.tag);
   };
   const onChange = (e) => {
-    setnote({...note,[e.target.name]:e.target.value})
+    setnote({ ...note, [e.target.name]: e.target.value });
   };
 
   return (
@@ -43,12 +47,24 @@ const Addnote = () => {
             onChange={onChange}
           />
         </div>
+        <div className="mb-3">
+          <label htmlFor="tag" className="form-label">
+            Tag
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="tag"
+            name="tag"
+            onChange={onChange}
+          />
+        </div>
         <button
           type="submit"
           className="btn btn-primary"
           onClick={handlesubmit}
         >
-          Submit
+          Add Note
         </button>
       </form>
     </div>
