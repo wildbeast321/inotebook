@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 export default function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -41,17 +41,14 @@ export default function Navbar() {
               </NavLink>
             </li>
           </ul>
-          <form className="d-flex" role="search">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
+          <div className="d-flex ">
+            <Link  to="/login" className="btn btn-outline-primary me-2" role="button" >
+              Login
+            </Link>
+            <Link to="/signup" className="btn btn-outline-primary" role="button" >
+              Sign Up
+            </Link>
+          </div>
         </div>
       </div>
     </nav>
