@@ -2,10 +2,10 @@ import React from "react";
 
 import NotesContainer from "./Notes";
 
-function Home() {
+function Home(props) {
   return (
     <>
-      <NotesContainer />
+      <NotesContainer showalert={props.showalert} />
     </>
   );
 }

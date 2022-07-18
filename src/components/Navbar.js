@@ -1,6 +1,12 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
-export default function Navbar() {
+import { NavLink, Link, useNavigate } from "react-router-dom";
+export default function Navbar(props) {
+  let navigate = useNavigate();
+  const handlelogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+    props.showalert("Logged Out Successfully", "success")
+  };
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
@@ -41,14 +47,31 @@ export default function Navbar() {
               </NavLink>
             </li>
           </ul>
-          <div className="d-flex ">
-            <Link  to="/login" className="btn btn-outline-primary me-2" role="button" >
-              Login
-            </Link>
-            <Link to="/signup" className="btn btn-outline-primary" role="button" >
-              Sign Up
-            </Link>
-          </div>
+          {!localStorage.getItem("token") ? (
+            <div className="d-flex ">
+              <Link
+                to="/login"
+                className="btn btn-outline-primary me-2"
+                role="button"
+              >
+                Login
+              </Link>
+              <Link
+                to="/signup"
+                className="btn btn-outline-primary"
+                role="button"
+              >
+                Sign Up
+              </Link>
+            </div>
+          ) : (
+            <button
+              className="btn btn-outline-primary me-2"
+              onClick={handlelogout}
+            >
+              Logout
+            </button>
+          )}
         </div>
       </div>
     </nav>
